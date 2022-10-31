@@ -21,19 +21,19 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class HomeController {
     
-     @RequestMapping("/lgn")
-    public String getLogin(@RequestParam(value="inputnama") String nama,
-                           @RequestParam(value="inputdate") String date,
-                           @RequestParam(value="inputfile") MultipartFile photo,
+     @RequestMapping("/data")
+    public String getLogin(@RequestParam(value="mskkannama") String nama,
+                           @RequestParam(value="mskkantgl") String tanggal,
+                           @RequestParam(value="mskkanfoto") MultipartFile foto,
                            Model model)
         
     throws IOException{
         
-        byte[] img = photo.getBytes();
+        byte[] img = foto.getBytes();
         String base64Image = Base64.encodeBase64String(img);
         String link = "data:image/png;base64,".concat(base64Image);
         model.addAttribute("Kirimnama", nama);
-        model.addAttribute("Kirimdate", date);
+        model.addAttribute("Kirimtanggal", tanggal);
         model.addAttribute("Kirimfile", link);
         return "Hasil";
     
